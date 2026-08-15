@@ -199,6 +199,15 @@ app.post('/api/generate/seo', async (req, res) => {
   }, 800);
 });
 
+app.get('/api/health', (req, res) => {
+  const mode = openai ? 'live' : 'mock';
+  res.json({
+    status: 'OK',
+    mode: mode,
+    version: '1.0.0'
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Secure API Proxy active on: http://localhost:${PORT}`);
 });
