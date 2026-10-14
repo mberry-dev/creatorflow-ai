@@ -208,6 +208,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Secure API Proxy active on: http://localhost:${PORT}`);
-});
+// Only start listening when run directly (not when imported by the test suite)
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Secure API Proxy active on: http://localhost:${PORT}`);
+  });
+}
+
+export default app;
