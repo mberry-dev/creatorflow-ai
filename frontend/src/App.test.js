@@ -17,6 +17,7 @@ jest.mock('./components/AIToolStudio', () => ({
   default: () => 'AI Tool Studio (stub)',
 }));
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 const unsubscribe = jest.fn();
 
 // Simulate Firebase reporting the given user (or null) to App's auth listener.
@@ -54,7 +55,7 @@ describe('App shell', () => {
     render(<App />);
     expect(await screen.findByText('Online')).toBeInTheDocument();
     expect(screen.getByText(/Backend pipeline is live via CORS!/)).toBeInTheDocument();
-    expect(axios.get).toHaveBeenCalledWith('http://localhost:5000/api/status');
+    expect(axios.get).toHaveBeenCalledWith(`${API_URL}/api/status`);
   });
 
   test('shows the backend as Offline when /api/status fails', async () => {

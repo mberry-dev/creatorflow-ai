@@ -21,6 +21,7 @@ jest.mock('firebase/firestore', () => ({
   writeBatch: jest.fn(),
 }));
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 const USER = { uid: 'user-123', email: 'creator@example.com' };
 let snapshotDocs; // what Firestore "returns" for the user's saved_assets
 let profileData;  // what Firestore "returns" for users/{uid}
@@ -119,7 +120,7 @@ describe('AIToolStudio — AI generation (US-03 to US-06)', () => {
     clickGenerate();
 
     expect(await screen.findByText('Title Two')).toBeInTheDocument();
-    expect(global.fetch.mock.calls[0][0]).toBe('http://localhost:5000/api/generate/title');
+    expect(global.fetch.mock.calls[0][0]).toBe(`${API_URL}/api/generate/title`);
     expect(lastFetchBody()).toEqual({ topic: 'how to start a podcast', platform: 'TikTok', tone: 'Clickbait/Viral' });
     expect(screen.getAllByRole('button', { name: 'Save Asset' })).toHaveLength(3);
     expect(screen.getAllByRole('button', { name: 'Copy' })).toHaveLength(3);
@@ -132,7 +133,7 @@ describe('AIToolStudio — AI generation (US-03 to US-06)', () => {
     typeTopic('morning workout routine');
     clickGenerate();
     expect(await screen.findByText('Your morning routine, optimized.')).toBeInTheDocument();
-    expect(global.fetch.mock.calls[0][0]).toBe('http://localhost:5000/api/generate/description');
+    expect(global.fetch.mock.calls[0][0]).toBe(`${API_URL}/api/generate/description`);
   });
 
   test('Hashtag Generator renders every returned hashtag', async () => {
@@ -144,7 +145,7 @@ describe('AIToolStudio — AI generation (US-03 to US-06)', () => {
     expect(await screen.findByText('#tokyo')).toBeInTheDocument();
     expect(screen.getByText('#travel')).toBeInTheDocument();
     expect(screen.getByText('#vlog')).toBeInTheDocument();
-    expect(global.fetch.mock.calls[0][0]).toBe('http://localhost:5000/api/generate/hashtags');
+    expect(global.fetch.mock.calls[0][0]).toBe(`${API_URL}/api/generate/hashtags`);
   });
 
   test('SEO Optimizer sends only the topic and renders keywords and recommendations', async () => {
@@ -155,7 +156,7 @@ describe('AIToolStudio — AI generation (US-03 to US-06)', () => {
     clickGenerate();
     expect(await screen.findByText('guitar basics')).toBeInTheDocument();
     expect(screen.getByText('Use the keyword early.')).toBeInTheDocument();
-    expect(global.fetch.mock.calls[0][0]).toBe('http://localhost:5000/api/generate/seo');
+    expect(global.fetch.mock.calls[0][0]).toBe(`${API_URL}/api/generate/seo`);
     expect(lastFetchBody()).toEqual({ topic: 'beginner guitar lessons' });
   });
 

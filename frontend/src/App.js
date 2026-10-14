@@ -49,7 +49,7 @@ function App() {
 
   // 1. Monitor Backend Status
   useEffect(() => {
-    axios.get('http://localhost:5000/api/status')
+    axios.get(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/status`)
       .then((response) => {
         setBackendMessage(response.data.message);
         setServerStatus(response.data.status);

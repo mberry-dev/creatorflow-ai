@@ -22,11 +22,13 @@ const systemPrompt = () => mockCreate.mock.calls[0][0].messages[0].content;
 const userPrompt = () => mockCreate.mock.calls[0][0].messages[1].content;
 
 let app;
+let openAIConstructorCalls; // captured at startup, before any per-test mock reset
 
 beforeAll(async () => {
   vi.spyOn(console, 'log').mockImplementation(() => {});
   vi.spyOn(console, 'warn').mockImplementation(() => {});
   app = await loadApp({ apiKey: 'sk-test-key' });
+  openAIConstructorCalls = [...OpenAIMock.mock.calls];
 });
 
 beforeEach(() => {
@@ -35,7 +37,7 @@ beforeEach(() => {
 
 describe('Startup mode selection', () => {
   it('creates the OpenAI client with the key from the environment', () => {
-    expect(OpenAIMock).toHaveBeenCalledWith({ apiKey: 'sk-test-key' });
+    expect(openAIConstructorCalls).toEqual([[{ apiKey: 'sk-test-key' }]]);
   });
 
   it('reports Production (Live AI) mode on /api/status', async () => {
