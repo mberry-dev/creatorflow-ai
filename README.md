@@ -1,5 +1,10 @@
 # 🚀 CreatorFlow AI
 
+**🌐 Live demo:** https://creatorflow-ai-zeta.vercel.app
+Create an account to try it. The first load may take ~30 seconds while the free backend server wakes up.
+
+**🧪 Tests:** 111 automated tests. See [TESTING.md](TESTING.md).
+
 CreatorFlow AI is a full-stack web application designed for content creators to generate platform-optimized video titles, descriptions, hashtags, and SEO recommendations for YouTube, TikTok, and Instagram Reels.
 
 ---
