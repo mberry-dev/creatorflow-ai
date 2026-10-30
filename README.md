@@ -150,3 +150,11 @@ Unit tests check that the code works. Evals check that the **AI output is good**
 | v2 (improved prompts) | 16.7/20 (83%) |
 
 The evals also found two bugs, which are now fixed: a topic made of only spaces was sent to the AI, and Instagram descriptions used the wrong character limit. See the [evals README](backend/evals/README.md) for the full results and how to run them.
+
+## 📄 Project Documentation
+
+CreatorFlow AI was built for a Software Engineering II course, which included these planning, design, and testing documents:
+
+- [Software Requirements Specification (SRS)](docs/CreatorFlow_AI_SRS_v1.0.pdf): features, user stories, and requirements
+- [Software Design Specification (SDS)](docs/CreatorFlow_AI_SDS_v1.0.pdf): architecture, data model, and API design
+- [Testing Plan](docs/CreatorFlow_AI_Testing_Plan_v1.0.pdf): test strategy and test cases
