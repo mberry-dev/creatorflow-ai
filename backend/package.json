@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "npx nodemon server.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "eval": "node evals/run-evals.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
