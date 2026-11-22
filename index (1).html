@@ -1,0 +1,1194 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+
+<title>Michael Berry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap">
+
+<style>
+  /* ── Tokens ── */
+  :root {
+    --bg:           #F5F4F0;
+    --bg2:          #ECEAE4;
+    --surface:      #FFFFFF;
+    --border:       #DEDAD2;
+    --accent:       #C68A00;
+    --accent-dim:   rgba(198,138,0,0.12);
+    --text:         #141620;
+    --text-muted:   #6B6E82;
+    --text-faint:   #9B9EB4;
+    --radius:       6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:           #0F1117;
+      --bg2:          #13161E;
+      --surface:      #1A1D28;
+      --border:       #252836;
+      --accent:       #F0A500;
+      --accent-dim:   rgba(240,165,0,0.1);
+      --text:         #E8E9F0;
+      --text-muted:   #8B8FA8;
+      --text-faint:   #555870;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:           #0F1117;
+    --bg2:          #13161E;
+    --surface:      #1A1D28;
+    --border:       #252836;
+    --accent:       #F0A500;
+    --accent-dim:   rgba(240,165,0,0.1);
+    --text:         #E8E9F0;
+    --text-muted:   #8B8FA8;
+    --text-faint:   #555870;
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .nav-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent) !important;
+    border: 1px solid var(--accent);
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    transition: background 0.15s, color 0.15s !important;
+  }
+  .nav-cta:hover {
+    background: var(--accent) !important;
+    color: var(--bg) !important;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 96px 0 80px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-summary {
+    max-width: 580px;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--text-muted); color: var(--text); }
+  .hero-stat-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .hero-stat {}
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .hero-stat-num span { color: var(--accent); }
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── Section shared ── */
+  section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Projects ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.15s;
+  }
+  .project-card:hover { border-color: var(--accent); }
+  /* When AI notes are open, stop the neighboring card from stretching to match */
+  .project-card:nth-child(even):has(details[open]),
+  .project-card:nth-child(even):has(details[open]) + .project-card,
+  .project-card:nth-child(even):has(+ .project-card details[open]),
+  .project-card:nth-child(odd):has(details[open]) { align-self: start; }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .project-card.featured .project-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .project-tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .project-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-family: monospace;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .project-tag.role {
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border);
+  }
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .project-stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .stack-chip {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--text-faint);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .built-line {
+    font-size: 0.8125rem;
+    color: var(--text-faint);
+    margin-top: -6px;
+  }
+  .built-line b {
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .ai-notes {
+    margin-top: 10px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+  }
+  .ai-notes summary {
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ai-notes summary::-webkit-details-marker { display: none; }
+  .ai-notes summary::before {
+    content: '▸';
+    font-size: 0.7rem;
+    transition: transform 0.15s;
+  }
+  .ai-notes[open] summary::before { transform: rotate(90deg); }
+  .ai-notes-body {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ai-note-item {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+  .ai-note-term {
+    font-family: monospace;
+    font-weight: 500;
+    color: var(--text);
+    margin-right: 4px;
+  }
+  .project-highlight {
+    background: var(--accent-dim);
+    border: 1px solid rgba(240,165,0,0.2);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .project-highlight-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: monospace;
+    color: var(--accent);
+  }
+  .project-highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .highlight-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .mini-projects {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 900px) {
+    .mini-projects { grid-template-columns: repeat(2, 1fr); }
+  }
+  .mini-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    transition: border-color 0.15s;
+  }
+  .mini-card:hover { border-color: var(--border); }
+  .mini-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .mini-desc {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .mini-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .mini-links .project-link {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .project-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 12px;
+    border-radius: var(--radius);
+    transition: background 0.15s, color 0.15s;
+  }
+  .project-link:hover { background: var(--accent); color: var(--bg); }
+  .project-link-note {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+
+  /* ── Skills ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .skill-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+  }
+  .skill-category {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-item {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: var(--text-muted);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  /* ── About / Experience ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .exp-org {
+    font-size: 0.875rem;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .exp-period {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    font-family: monospace;
+    margin-bottom: 14px;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .exp-bullets li {
+    font-size: 0.8375rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .exp-bullets li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border);
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+
+  /* ── Education ── */
+  .edu-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .edu-school {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .edu-degree {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .edu-year {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+
+  /* ── Contact ── */
+  .contact-section {
+    padding: 80px 0;
+    border-bottom: none;
+  }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .contact-headline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+  .contact-headline em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .contact-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--text); }
+  .contact-link-icon {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .contact-link-label { font-weight: 500; color: var(--text); font-size: 0.875rem; display: block; }
+  .contact-link-sub { font-size: 0.8rem; color: var(--text-faint); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .footer-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-copy {
+    font-size: 0.8125rem;
+    color: var(--text-faint);
+  }
+  .footer-built {
+    font-size: 0.8125rem;
+    color: var(--text-faint);
+  }
+  .footer-built span { color: var(--accent); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 0 48px; }
+    .hero-stat-row { gap: 24px; margin-top: 40px; padding-top: 28px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .mini-projects { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+  @media (max-width: 480px) {
+    .mini-projects { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">M<span>.</span>Berry</span>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="container">
+  <div class="hero">
+    <p class="hero-eyebrow">Portfolio · Dearborn, MI</p>
+    <h1 class="hero-name">Michael Berry</h1>
+    <p class="hero-title"><em>AI</em> Developer &amp; Full-Stack Engineer</p>
+    <p class="hero-summary">
+      AI-first builder. I take an idea from first prompt to a deployed product by directing AI through the full engineering cycle: plan, design, implement, test, then go back and refine until the result matches the plan. I choose the stack and architecture, keep secrets out of source control, shape the front end and back-end services, and verify with automated tests, evals and security checks. AI writes the code; I make the decisions and own the result.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:mberry.email@gmail.com" class="btn-primary">
+        ✉ Get in touch
+      </a>
+      <a href="https://github.com/mberry-dev" target="_blank" rel="noopener" class="btn-ghost">
+        ↗ GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/mberry-dev/" target="_blank" rel="noopener" class="btn-ghost">
+        ↗ LinkedIn
+      </a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num">11<span>+</span></div>
+        <div class="hero-stat-label">Projects on GitHub</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" style="font-size:1.4rem;line-height:1.2;">Real<span> Client</span></div>
+        <div class="hero-stat-label">Deliverables accepted</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">3<span>.80</span></div>
+        <div class="hero-stat-label">GPA · Final seven semesters</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" style="font-size:1.4rem;line-height:1.2;">Bi<span>lingual</span></div>
+        <div class="hero-stat-label">English &amp; Arabic</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Projects</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Featured: My Better Life -->
+      <div class="project-card featured">
+        <div class="project-body">
+          <div class="project-tag-row">
+            <span class="project-tag">Capstone</span>
+            <span class="project-tag">External Client</span>
+            <span class="project-tag role">Team &amp; Technical Lead</span>
+          </div>
+          <div class="project-name">My Better Life</div>
+          <div class="built-line">Built with <b>Claude</b> &amp; <b>GitHub Copilot</b></div>
+          <p class="project-desc">
+            Eight-month Senior Design capstone (January–August 2026) for a real external client. Led a four-person team on a personal-development and guidance platform built on an Azure SQL database the client managed himself. The team kept the C# code and NuGet packages in Visual Studio aligned with the SQL database, since a mismatch on either side would break the system, tested new queries, and used Syncfusion to build Gantt charts filled from the database. A very connected project, run the way the client wanted, feeding his external AI reasoning engine. The client accepted the June deliverables in August and called the team great to work with.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">ASP.NET Core</span>
+            <span class="stack-chip">Blazor Server</span>
+            <span class="stack-chip">Entity Framework Core</span>
+            <span class="stack-chip">Syncfusion</span>
+            <span class="stack-chip">C#</span>
+            <span class="stack-chip">Azure SQL</span>
+            <span class="stack-chip">SSMS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://mberry-dev.github.io/my-better-life/" target="_blank" rel="noopener" class="project-link">↗ Project overview</a>
+            <a href="https://mberry-dev.github.io/my-better-life/faq/" target="_blank" rel="noopener" class="project-link">↗ Project FAQ</a>
+            <a href="https://mberry-dev.github.io/posters/my-better-life-poster.pdf" target="_blank" rel="noopener" class="project-link">↗ Senior Design poster</a>
+          </div>
+          <details class="ai-notes">
+            <summary>AI engineering notes from this project</summary>
+            <div class="ai-notes-body">
+              <div class="ai-note-item"><span class="ai-note-term">Data for the AI —</span>a Verb action taxonomy that links Input, Catalyst and Output Nouns, plus NOVA coordination records, give the external engine structured user data to reason over.</div>
+              <div class="ai-note-item"><span class="ai-note-term">Safe data access —</span>the C# code reaches the client's database only through parameterized stored procedures, and a pod parameter on every procedure keeps each user's data isolated at the database layer.</div>
+              <div class="ai-note-item"><span class="ai-note-term">Credentials kept out of Git —</span>connection strings load through configuration instead of source code, a lesson from an early connection-string mistake, and an end-of-sprint audit checked that no credentials were committed.</div>
+              <div class="ai-note-item"><span class="ai-note-term">AI as a separate layer —</span>the client managed most of the Azure SQL database; the team's scope was keeping the C# code, NuGet packages and SQL database aligned and working together (about 80% backend and CRUD, 20% AI and analytics integration), including testing new queries. The neural network reasoning engine is an external component the database feeds, and the end-user app was out of scope.</div>
+            </div>
+          </details>
+        </div>
+        <div class="project-highlight">
+          <div class="project-highlight-label">Key deliverables</div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>CRUD pages, task &amp; work scheduling, and foreign-key reporting</span></div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>Explain feature linking each work item to the guide task that explains it</span></div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>Kept the C# code and NuGet packages in Visual Studio aligned with the client's Azure SQL database, testing new queries and stored procedure calls end to end</span></div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>Syncfusion Gantt charts populated from the database through C#</span></div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>12 use cases and a 90-case test plan documented</span></div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>June requirements certified by the client at an August 6 demo</span></div>
+          <div class="project-highlight-item"><div class="highlight-dot"></div><span>Client confirmed acceptance by email and described the team as great to work with</span></div>
+        </div>
+      </div>
+
+      <!-- CreatorFlow AI -->
+      <div class="project-card">
+        <div class="project-tag-row">
+          <span class="project-tag">AI Tool</span>
+          <span class="project-tag role">Solo Build</span>
+        </div>
+        <div class="project-name">CreatorFlow AI</div>
+        <div class="built-line">Built with <b>Gemini</b></div>
+        <p class="project-desc">
+          AI-powered content optimizer for creators on YouTube, TikTok, and Instagram. Generates platform-tuned titles, descriptions, hashtags, and SEO recommendations with the OpenAI API. Built an eval suite that raised the AI's pass rate from 60% to 83%, backed by 111 automated tests. The live demo runs in mock-AI mode at zero API cost.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">React 19</span>
+          <span class="stack-chip">JavaScript</span>
+          <span class="stack-chip">Tailwind CSS</span>
+          <span class="stack-chip">Node.js</span>
+          <span class="stack-chip">Express</span>
+          <span class="stack-chip">OpenAI API</span>
+          <span class="stack-chip">Firebase Auth</span>
+          <span class="stack-chip">Firestore</span>
+          <span class="stack-chip">Vercel</span>
+          <span class="stack-chip">Render</span>
+          <span class="stack-chip">Vitest</span>
+          <span class="stack-chip">Jest</span>
+          <span class="stack-chip">Supertest</span>
+          <span class="stack-chip">React Testing Library</span>
+        </div>
+        <div class="project-links">
+          <a href="https://creatorflow-ai-zeta.vercel.app" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/creatorflow-ai" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+          <a href="https://github.com/mberry-dev/creatorflow-ai#-ai-evals" target="_blank" rel="noopener" class="project-link">↗ Eval results (60% → 83%)</a>
+          <span class="project-link-note">First load may take up to a minute while the server wakes up</span>
+        </div>
+        <details class="ai-notes">
+          <summary>AI engineering notes from this project</summary>
+          <div class="ai-notes-body">
+            <div class="ai-note-item"><span class="ai-note-term">Prompt engineering —</span>system/user prompt design was the difference between generic output and consistently platform-tuned titles, descriptions, and hashtags across YouTube, TikTok, and Instagram.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Structured outputs —</span>the generation pipeline required predictable, parseable responses so results could flow straight into the UI and Firestore.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Model/API integration —</span>OpenAI API (gpt-4o-mini) wired into a Node/Express backend, with JSON-mode responses, input validation, and error handling.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Mocking AI for development —</span>a built-in mock AI fallback lets the full pipeline run end to end at zero API cost, so the public demo and all 111 automated tests run without spending credits.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Evals —</span>built a 20-case eval suite that scores the real model's output with pass/fail checks (length limits, invented facts, prompt injection, bad input). It found invented numbers and fake timestamps; improved prompts raised the average pass rate from 60% to 83% across repeated runs.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Automated tests —</span>111 automated tests, separate from the evals: 48 backend tests (Vitest + Supertest) and 63 frontend tests (Jest + React Testing Library), all running against the mock AI so they cost nothing.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Steiner Survivors -->
+      <div class="project-card">
+        <div class="project-tag-row">
+          <span class="project-tag">Game</span>
+          <span class="project-tag role">Three-person Team</span>
+        </div>
+        <div class="project-name">Steiner Survivors</div>
+        <div class="built-line">Built with <b>ChatGPT</b> &amp; <b>Claude</b></div>
+        <p class="project-desc">
+          2D survival game built in C# with MonoGame. Owned the game state system (start/pause states), designed the main menu and settings with selectable controls (WASD or arrow keys), and integrated the in-game music system.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">C#</span>
+          <span class="stack-chip">.NET</span>
+          <span class="stack-chip">MonoGame</span>
+          <span class="stack-chip">OOP</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/mberry-dev/steiner-survivors-monogame/releases/latest" target="_blank" rel="noopener" class="project-link">↓ Download (Windows)</a>
+          <a href="https://github.com/mberry-dev/steiner-survivors-monogame" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+        </div>
+        <details class="ai-notes">
+          <summary>Engineering notes from this project</summary>
+          <div class="ai-notes-body">
+            <div class="ai-note-item"><span class="ai-note-term">Game state system —</span>a single GameState (Menu, Settings, Playing, Paused) controls what the game updates and draws each frame, so menus, gameplay and pause never conflict.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Soundtrack system —</span>music played through MonoGame's media player, pausing and resuming with the game, plus a key to switch to a random track.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Optional music —</span>copyrighted songs are kept out of the public repo; the song list builds only when it exists on the machine, and the game runs silently instead of crashing without it.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Later improvements —</span>after the course, made enemy contact damage use a cooldown, made restarts fully reset the game, fixed the fire-rate upgrade, and published a ready-to-play Windows release.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- DriveShare -->
+      <div class="project-card">
+        <div class="project-tag-row">
+          <span class="project-tag">Web App</span>
+          <span class="project-tag role">Solo Build</span>
+        </div>
+        <div class="project-name">DriveShare</div>
+        <div class="built-line">Built with <b>Claude</b></div>
+        <p class="project-desc">
+          A vehicle sharing platform that connects owners and renters — browse listings, book vehicles, and manage reservations through a streamlined web interface. Backed by 52 automated tests (pytest) covering all six design patterns and every user flow.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">Flask</span>
+          <span class="stack-chip">SQLite</span>
+          <span class="stack-chip">Gunicorn</span>
+          <span class="stack-chip">pytest</span>
+          <span class="stack-chip">Render</span>
+        </div>
+        <div class="project-links">
+          <a href="https://driveshare-4m5e.onrender.com" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/driveshare" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+          <span class="project-link-note">First load may take up to a minute while the server wakes up</span>
+        </div>
+        <details class="ai-notes">
+          <summary>Engineering notes from this project</summary>
+          <div class="ai-notes-body">
+            <div class="ai-note-item"><span class="ai-note-term">Design patterns —</span>six patterns wired into real features: Singleton (sessions), Observer (watchlist price alerts), Mediator (search, booking and messaging), Builder (car listings), Proxy (audited payments) and Chain of Responsibility (password recovery).</div>
+            <div class="ai-note-item"><span class="ai-note-term">Automated tests —</span>52 pytest tests cover each pattern on its own plus every user flow: login and recovery, booking rules, approve → pay → review, alerts, messaging and bad input. Each test runs on a fresh copy of the demo database.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Security —</span>salted password hashing (Werkzeug) with automatic upgrade of older SHA-256 hashes, and the secret key kept in the server environment.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Deployment —</span>deployed on Render with Gunicorn from a render.yaml blueprint; the demo database resets to clean data on each restart.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Recipease -->
+      <div class="project-card">
+        <div class="project-tag-row">
+          <span class="project-tag">Web App</span>
+          <span class="project-tag role">Solo Build</span>
+        </div>
+        <div class="project-name">Recipease</div>
+        <div class="built-line">Built with <b>Claude</b></div>
+        <p class="project-desc">
+          A full-stack recipe manager: save recipes, plan a week of meals on a drag-and-drop calendar, and turn the plan into one combined grocery list scaled to the number of people. Built on a Node.js and Express REST API with SQLite, backed by 110 automated tests.
+        </p>
+        <div class="project-stack">
+          <span class="stack-chip">Node.js</span>
+          <span class="stack-chip">Express</span>
+          <span class="stack-chip">SQLite</span>
+          <span class="stack-chip">REST API</span>
+          <span class="stack-chip">JavaScript</span>
+          <span class="stack-chip">Jest</span>
+          <span class="stack-chip">Supertest</span>
+          <span class="stack-chip">Render</span>
+        </div>
+        <div class="project-links">
+          <a href="https://recipease-uj0p.onrender.com" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/recipease" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+          <span class="project-link-note">First load may take up to a minute while the server wakes up</span>
+        </div>
+        <details class="ai-notes">
+          <summary>Engineering notes from this project</summary>
+          <div class="ai-notes-body">
+            <div class="ai-note-item"><span class="ai-note-term">REST API —</span>14 routes for recipes, the weekly meal plan and grocery lists. Every input is validated, so bad requests get a clear 400 response and malformed JSON can't crash the server.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Grocery list logic —</span>parses quantities and units (including fractions like 1 1/2 cups), combines duplicate ingredients across recipes, and scales amounts for the number of people.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Bug hunt —</span>after the course, audited the project and fixed a bulk save that hung or crashed the server, a field-name mismatch that made server saves silently fail, and a page-load error that broke the saved-weeks list.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Automated tests —</span>110 tests (Jest and Supertest): every API route on an in-memory database, unit tests for validation and parsing, and frontend tests that check the page and the server agree on the week number for every day from 2020 to 2031, run in three time zones. A separate smoke check tests a live deployment.</div>
+            <div class="ai-note-item"><span class="ai-note-term">Deployment —</span>one Express server serves both the API and the website, deployed on Render from a render.yaml blueprint; the demo database resets to sample data on each restart.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Mini projects -->
+    <div class="mini-projects">
+      <div class="mini-card">
+        <div class="mini-name">Weather App</div>
+        <div class="mini-desc">Search any city for current conditions, with a °F/°C toggle and same-name city matches. Built as an Android app (Kotlin) and as a web version with 60 automated tests and a live check of its weather API.</div>
+        <div class="mini-links">
+          <a href="https://mberry-dev.github.io/weather-app/" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/weather-app" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-name">Cat Breed</div>
+        <div class="mini-desc">Pick any of 100+ cat breeds to see its photo, origin, life span, weight and temperament. Built as an Android app (Kotlin) and as a web version with 54 automated tests, which keeps its API key out of the page by fetching the breed list when the site is published.</div>
+        <div class="mini-links">
+          <a href="https://mberry-dev.github.io/cat-breed/" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/cat-breed" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-name">Travel Brochure</div>
+        <div class="mini-desc">Responsive travel site in hand-written HTML and CSS Grid, with tailored desktop, tablet and phone layouts, a validated inquiry form and accessible image galleries.</div>
+        <div class="mini-links">
+          <a href="https://mberry-dev.github.io/travel-brochure/" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/travel-brochure" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-name">Contact Book</div>
+        <div class="mini-desc">React contact manager — add, search and delete contacts with email validation and duplicate checks. Contacts are saved in the browser and covered by 32 automated tests.</div>
+        <div class="mini-links">
+          <a href="https://mberry-dev.github.io/contact-book/" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/contact-book" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-name">Tic-Tac-Toe</div>
+        <div class="mini-desc">Android app (Kotlin) with a two-player mode, an AI opponent and score tracking, tested on three Pixel devices. Also built as a web version you can play in the browser, with 58 automated tests.</div>
+        <div class="mini-links">
+          <a href="https://mberry-dev.github.io/tic-tac-toe/" target="_blank" rel="noopener" class="project-link">↗ Live demo</a>
+          <a href="https://github.com/mberry-dev/tic-tac-toe" target="_blank" rel="noopener" class="project-link">↗ Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Skills</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-category">AI Development</div>
+        <div class="skill-items">
+          <span class="skill-item">Prompt engineering</span>
+          <span class="skill-item">AI-assisted workflows</span>
+          <span class="skill-item">Rapid prototyping</span>
+          <span class="skill-item">AI feature integration</span>
+          <span class="skill-item">OpenAI API</span>
+          <span class="skill-item">LLM evals</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Programming</div>
+        <div class="skill-items">
+          <span class="skill-item">C#</span>
+          <span class="skill-item">ASP.NET Core</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">JavaScript</span>
+          <span class="skill-item">TypeScript</span>
+          <span class="skill-item">Kotlin</span>
+          <span class="skill-item">HTML / CSS</span>
+          <span class="skill-item">Tailwind CSS</span>
+          <span class="skill-item">React</span>
+          <span class="skill-item">React Native / Expo</span>
+          <span class="skill-item">Node.js / Express</span>
+          <span class="skill-item">Blazor Server</span>
+          <span class="skill-item">Entity Framework Core</span>
+          <span class="skill-item">Syncfusion</span>
+          <span class="skill-item">SQL</span>
+          <span class="skill-item">REST APIs</span>
+          <span class="skill-item">C++</span>
+          <span class="skill-item">MonoGame</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Platforms &amp; Tools</div>
+        <div class="skill-items">
+          <span class="skill-item">Azure SQL</span>
+          <span class="skill-item">Firebase</span>
+          <span class="skill-item">Firestore</span>
+          <span class="skill-item">GitHub</span>
+          <span class="skill-item">Render</span>
+          <span class="skill-item">Vercel</span>
+          <span class="skill-item">VS Code</span>
+          <span class="skill-item">Visual Studio</span>
+          <span class="skill-item">Android Studio</span>
+          <span class="skill-item">GitHub Actions (CI/CD)</span>
+          <span class="skill-item">Gradle</span>
+          <span class="skill-item">Node test runner</span>
+          <span class="skill-item">jsdom</span>
+          <span class="skill-item">JUnit</span>
+          <span class="skill-item">SSMS</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Leadership &amp; Communication</div>
+        <div class="skill-items">
+          <span class="skill-item">Team leadership</span>
+          <span class="skill-item">Client consulting</span>
+          <span class="skill-item">Project management</span>
+          <span class="skill-item">Agile / sprints</span>
+          <span class="skill-item">English (fluent)</span>
+          <span class="skill-item">Arabic (fluent)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">About</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          What I love about building with AI is that when I have an idea, I can bring it to life, and I love seeing a project all the way through: finishing it, deploying it and shipping it. I direct AI to build, and I use it to audit and explain code.
+        </p>
+        <p>
+          I treat AI-built software like any engineering project: plan, design, implement, then check the result against the plan and iterate until it matches. I pick the architecture and services, keep API keys and other secrets out of source control, and verify with automated tests, evals and security checks instead of reading every line.
+        </p>
+        <p>
+          My best work came from real pressure: an eight-month Senior Design capstone delivered to a real client, a solo AI product shipped across six Agile sprints, a vehicle-sharing platform, and a team-built 2D game. I'm most in my element when there's a real problem and a deadline.
+        </p>
+        <p>
+          I graduated from the University of Michigan-Dearborn with a B.S. in Computer and Information Science. Fluent in English and Arabic, I'm looking for AI engineering and software engineering roles on teams that move fast and build with AI.
+        </p>
+        <div class="edu-row">
+          <div class="edu-item">
+            <div>
+              <div class="edu-school">University of Michigan-Dearborn</div>
+              <div class="edu-degree">B.S. in Computer and Information Science · Concentration in Computer Science</div>
+              <div class="edu-degree">Cumulative GPA: 3.43 · Final seven semesters: 3.80 GPA</div>
+            </div>
+            <div class="edu-year">2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-role">Administrative Assistant</div>
+        <div class="exp-org">Genius Realty LLC (formerly Team Ali LLC) — Real Estate Services</div>
+        <div class="exp-period">Dearborn, MI · 2021 – Present</div>
+        <ul class="exp-bullets">
+          <li>Use AI to draft listing descriptions, cutting writing time per listing from 30–45 minutes to about 10–15.</li>
+          <li>Produce property marketing videos and brokerage promotion using AI tools such as CapCut and VideoProc Vlogger.</li>
+          <li>Handle client email and phone correspondence, answering buyer and seller inquiries on listed properties.</li>
+          <li>Coordinate property showings and serve as the point of contact for prospective buyers.</li>
+          <li>Manage the broker's calendar of appointments, showings, and meetings.</li>
+          <li>Publish listings and transactions on MLS with photos and full property details.</li>
+          <li>Maintain all client documentation, contracts, and records, plus the brokerage's in-house Excel CRM.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <h2 class="contact-headline">Let's build something <em>useful</em>.</h2>
+        <p class="contact-sub">
+          I'm actively looking for AI engineering and software engineering roles. If you're building something with AI, I'd love to hear about it.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:mberry.email@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <div>
+            <span class="contact-link-label">Email</span>
+            <span class="contact-link-sub">mberry.email@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/mberry-dev/" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-icon">in</span>
+          <div>
+            <span class="contact-link-label">LinkedIn</span>
+            <span class="contact-link-sub">linkedin.com/in/mberry-dev</span>
+          </div>
+        </a>
+        <a href="https://github.com/mberry-dev" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-icon">⌥</span>
+          <div>
+            <span class="contact-link-label">GitHub</span>
+            <span class="contact-link-sub">github.com/mberry-dev</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Michael Berry</span>
+    <span class="footer-built">Built with <span>AI</span> · Dearborn, MI</span>
+  </div>
+</footer>
+
+
+</body></html>
